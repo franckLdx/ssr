@@ -1,0 +1,3 @@
+module.exports=[24271,a=>{"use strict";var b=a.i(44815),c=a.i(90912);a.s([],24617),a.i(24617),a.s(["00a683314508e11884524d6877734be42cf5296b9e",()=>b.getCart,"40f0b7a6f42befc802d4400c424600bccf535bea9f",()=>b.addProductToCart,"80cf305fb001cd7be29986359f8ed94249d4f385c0",()=>c.$$RSC_SERVER_CACHE_0],24271)}];
+
+//# sourceMappingURL=d06c5_react-execercies2_rsc_next16__next-internal_server_app_page_actions_62d6fdb5.js.map

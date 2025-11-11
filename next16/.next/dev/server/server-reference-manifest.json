@@ -1,0 +1,51 @@
+{
+  "node": {
+    "0091a567726e8345dc602905f735fac479ab655080": {
+      "workers": {
+        "app/page": {
+          "moduleId": "[project]/Documents/dev/react-execercies2/rsc/next16/.next-internal/server/app/page/actions.js { ACTIONS_MODULE0 => \"[project]/Documents/dev/react-execercies2/rsc/next16/src/services/cart/serverFunctions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/Documents/dev/react-execercies2/rsc/next16/src/services/products/server.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getCart",
+          "filename": "Documents/dev/react-execercies2/rsc/next16/src/services/cart/serverFunctions.ts"
+        }
+      },
+      "layer": {
+        "app/page": "rsc"
+      },
+      "filename": "Documents/dev/react-execercies2/rsc/next16/src/services/cart/serverFunctions.ts",
+      "exportedName": "getCart"
+    },
+    "409edbc6ee905599611aec94834306b373d85e1965": {
+      "workers": {
+        "app/page": {
+          "moduleId": "[project]/Documents/dev/react-execercies2/rsc/next16/.next-internal/server/app/page/actions.js { ACTIONS_MODULE0 => \"[project]/Documents/dev/react-execercies2/rsc/next16/src/services/cart/serverFunctions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/Documents/dev/react-execercies2/rsc/next16/src/services/products/server.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "addProductToCart",
+          "filename": "Documents/dev/react-execercies2/rsc/next16/src/services/cart/serverFunctions.ts"
+        }
+      },
+      "layer": {
+        "app/page": "action-browser"
+      },
+      "filename": "Documents/dev/react-execercies2/rsc/next16/src/services/cart/serverFunctions.ts",
+      "exportedName": "addProductToCart"
+    },
+    "809f2d5a02461dee20a30ace826c935bf9da41defa": {
+      "workers": {
+        "app/page": {
+          "moduleId": "[project]/Documents/dev/react-execercies2/rsc/next16/.next-internal/server/app/page/actions.js { ACTIONS_MODULE0 => \"[project]/Documents/dev/react-execercies2/rsc/next16/src/services/cart/serverFunctions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/Documents/dev/react-execercies2/rsc/next16/src/services/products/server.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "$$RSC_SERVER_CACHE_0",
+          "filename": "Documents/dev/react-execercies2/rsc/next16/src/services/products/server.ts"
+        }
+      },
+      "layer": {
+        "app/page": "rsc"
+      },
+      "filename": "Documents/dev/react-execercies2/rsc/next16/src/services/products/server.ts",
+      "exportedName": "$$RSC_SERVER_CACHE_0"
+    }
+  },
+  "edge": {},
+  "encryptionKey": "cJlWft3M2IbiSXruulBO/Soru6uFyizRGsxTEffMH1s="
+}

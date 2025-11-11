@@ -1,0 +1,423 @@
+[00:00:18.005] Server  LOG      ✓ Ready in 11.4s
+[00:00:38.066] Server  LOG      ○ Compiling / ...
+[00:01:27.242] Server  LOG     ******************* GET CART START
+[00:01:27.941] Server  LOG     ******************* GET CART 1
+[00:01:28.410] Server  LOG     [
+  {
+    "productId": "14",
+    "quantity": 1
+  }
+]
+[00:01:35.539] Browser LOG     [
+  {
+    "productId": "14",
+    "quantity": 1
+  }
+]
+[00:01:35.539] Browser LOG     [2;38;2;124;124;124m%s[0m [
+  {
+    "productId": "14",
+    "quantity": 1
+  }
+]
+[00:01:44.120] Server  LOG     ******************* ADD PRODUCT
+[00:01:44.202] Server  LOG     ******************* GET CART START
+[00:01:45.352] Server  ERROR    ⨯ TypeError: cartModel.products is not iterable
+[00:01:45.752] Server  LOG     ******************* GET CART 1
+[00:01:45.909] Browser ERROR   unhandledRejection: TypeError: cartModel.products is not iterable
+[00:01:46.016] Browser LOG     [
+  {
+    "productId": "14",
+    "quantity": 1
+  }
+]
+[00:01:46.016] Browser LOG     [2;38;2;124;124;124m%s[0m [
+  {
+    "productId": "14",
+    "quantity": 1
+  }
+]
+[00:34:29.322] Browser ERROR   ./Documents/dev/react-execercies2/rsc/next16/src/services/products/server.ts:7:3
+Parsing ecmascript source code failed
+   5 | export async function getProducts() {
+   6 |   cacheComponents: true,
+>  7 |   const data = await fetch('http://localhost:3000/products', { cache: 'no-store' })
+     |   ^^^^^
+   8 |   if (!data.ok) {
+   9 |     throw new Error("Failed to load products")
+  10 |   }
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./Documents/dev/react-execercies2/rsc/next16/src/services/products/server.ts
+    ./Documents/dev/react-execercies2/rsc/next16/src/app/_catalog/Products.tsx
+    ./Documents/dev/react-execercies2/rsc/next16/src/app/page.tsx
+[00:35:16.307] Browser ERROR   ./Documents/dev/react-execercies2/rsc/next16/src/services/products/server.ts:7:3
+Parsing ecmascript source code failed
+   5 | export async function getProducts() {
+   6 |   cacheComponents: true,
+>  7 |   const data = await fetch('http://localhost:3000/products', { cache: 'no-store' })
+     |   ^^^^^
+   8 |   if (!data.ok) {
+   9 |     throw new Error("Failed to load products")
+  10 |   }
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./Documents/dev/react-execercies2/rsc/next16/src/services/products/server.ts
+    ./Documents/dev/react-execercies2/rsc/next16/src/app/_catalog/Products.tsx
+    ./Documents/dev/react-execercies2/rsc/next16/src/app/page.tsx
+[00:35:51.115] Server  LOG      ✓ Compiled in 675ms
+[00:35:51.908] Server  LOG     ******************* GET CART START
+[00:35:51.990] Server  LOG     ******************* GET CART 1
+[00:35:52.314] Browser LOG     [
+  {
+    "productId": "14",
+    "quantity": 1
+  }
+]
+[00:35:52.314] Browser LOG     [2;38;2;124;124;124m%s[0m [
+  {
+    "productId": "14",
+    "quantity": 1
+  }
+]
+[00:36:16.963] Server  LOG      ✓ Compiled in 294ms
+[00:36:17.581] Server  LOG     ******************* GET CART START
+[00:36:17.626] Server  LOG     ******************* GET CART 1
+[00:36:18.318] Browser LOG     [
+  {
+    "productId": "14",
+    "quantity": 1
+  }
+]
+[00:36:18.318] Browser LOG     [2;38;2;124;124;124m%s[0m [
+  {
+    "productId": "14",
+    "quantity": 1
+  }
+]
+[00:36:42.388] Server  LOG     ******************* GET CART START
+[00:36:42.454] Server  LOG     ******************* GET CART 1
+[00:36:43.320] Browser LOG     [
+  {
+    "productId": "14",
+    "quantity": 1
+  }
+]
+[00:36:43.320] Browser LOG     [2;38;2;124;124;124m%s[0m [
+  {
+    "productId": "14",
+    "quantity": 1
+  }
+]
+[00:36:53.065] Server  LOG     ******************* GET CART START
+[00:36:53.631] Server  LOG     ******************* GET CART 1
+[00:36:53.957] Server  LOG     [
+  {
+    "productId": "14",
+    "quantity": 1
+  }
+]
+[00:36:57.728] Browser LOG     [
+  {
+    "productId": "14",
+    "quantity": 1
+  }
+]
+[00:36:57.728] Browser LOG     [2;38;2;124;124;124m%s[0m [
+  {
+    "productId": "14",
+    "quantity": 1
+  }
+]
+[00:37:28.123] Server  LOG     ******************* GET CART START
+[00:37:28.133] Server  LOG     ******************* GET CART 1
+[00:37:28.163] Server  LOG     ******************* ADD PRODUCT
+[00:37:28.192] Server  LOG     ******************* GET CART START
+[00:37:28.300] Server  LOG     ******************* GET CART 2
+[00:37:28.577] Browser LOG     [
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  }
+]
+[00:37:28.577] Browser LOG     [2;38;2;124;124;124m%s[0m [
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  }
+]
+[00:37:56.129] Server  LOG      ✓ Compiled in 228ms
+[00:38:04.066] Server  LOG     ******************* GET CART START
+[00:38:04.077] Server  LOG     ******************* GET CART 2
+[00:38:04.110] Server  LOG     ******************* ADD PRODUCT
+[00:38:04.573] Server  LOG     ******************* GET CART START
+[00:38:04.790] Server  LOG     ******************* GET CART 3
+[00:38:05.111] Browser LOG     [
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "14",
+    "quantity": 1
+  }
+]
+[00:38:05.111] Browser LOG     [2;38;2;124;124;124m%s[0m [
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "14",
+    "quantity": 1
+  }
+]
+[00:38:05.111] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 14
+[00:38:09.520] Server  LOG     ******************* GET CART START
+[00:38:09.529] Server  LOG     ******************* GET CART 3
+[00:38:09.546] Server  LOG     ******************* ADD PRODUCT
+[00:38:09.577] Server  LOG     ******************* GET CART START
+[00:38:09.711] Server  LOG     ******************* GET CART 4
+[00:38:09.889] Browser LOG     [
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  }
+]
+[00:38:09.889] Browser LOG     [2;38;2;124;124;124m%s[0m [
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  }
+]
+[00:38:09.889] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 14
+[00:38:09.889] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 1
+[00:38:11.069] Server  LOG     ******************* GET CART START
+[00:38:11.073] Server  LOG     ******************* GET CART 4
+[00:38:11.089] Server  LOG     ******************* ADD PRODUCT
+[00:38:11.139] Server  LOG     ******************* GET CART START
+[00:38:11.291] Server  LOG     ******************* GET CART 5
+[00:38:11.469] Browser LOG     [
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  }
+]
+[00:38:11.469] Browser LOG     [2;38;2;124;124;124m%s[0m [
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  }
+]
+[00:38:11.469] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 14
+[00:38:11.469] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 1
+[00:38:11.469] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 1
+[00:38:12.258] Server  LOG     ******************* GET CART START
+[00:38:12.264] Server  LOG     ******************* GET CART 5
+[00:38:12.275] Server  LOG     ******************* ADD PRODUCT
+[00:38:12.308] Server  LOG     ******************* GET CART START
+[00:38:12.443] Server  LOG     ******************* GET CART 6
+[00:38:12.648] Browser LOG     [
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  }
+]
+[00:38:12.648] Browser LOG     [2;38;2;124;124;124m%s[0m [
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  }
+]
+[00:38:12.648] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 14
+[00:38:12.648] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 1
+[00:38:12.649] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 1
+[00:38:12.649] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 1
+[00:38:17.530] Server  LOG     ******************* GET CART START
+[00:38:17.537] Server  LOG     ******************* GET CART 6
+[00:38:17.560] Server  LOG     ******************* ADD PRODUCT
+[00:38:17.594] Server  LOG     ******************* GET CART START
+[00:38:17.768] Server  LOG     ******************* GET CART 7
+[00:38:18.004] Browser LOG     [
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  }
+]
+[00:38:18.005] Browser LOG     [2;38;2;124;124;124m%s[0m [
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "14",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  },
+  {
+    "productId": "1",
+    "quantity": 1
+  }
+]
+[00:38:18.005] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 14
+[00:38:18.005] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 1
+[00:38:18.005] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 1
+[00:38:18.005] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 1
+[00:38:18.005] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 1

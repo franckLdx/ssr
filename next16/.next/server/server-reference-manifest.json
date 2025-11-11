@@ -1,0 +1,51 @@
+{
+  "node": {
+    "00a683314508e11884524d6877734be42cf5296b9e": {
+      "workers": {
+        "app/page": {
+          "moduleId": 24271,
+          "async": false,
+          "exportedName": "getCart",
+          "filename": "Documents/dev/react-execercies2/rsc/next16/src/services/cart/serverFunctions.ts"
+        }
+      },
+      "layer": {
+        "app/page": "rsc"
+      },
+      "filename": "Documents/dev/react-execercies2/rsc/next16/src/services/cart/serverFunctions.ts",
+      "exportedName": "getCart"
+    },
+    "40f0b7a6f42befc802d4400c424600bccf535bea9f": {
+      "workers": {
+        "app/page": {
+          "moduleId": 24271,
+          "async": false,
+          "exportedName": "addProductToCart",
+          "filename": "Documents/dev/react-execercies2/rsc/next16/src/services/cart/serverFunctions.ts"
+        }
+      },
+      "layer": {
+        "app/page": "action-browser"
+      },
+      "filename": "Documents/dev/react-execercies2/rsc/next16/src/services/cart/serverFunctions.ts",
+      "exportedName": "addProductToCart"
+    },
+    "80cf305fb001cd7be29986359f8ed94249d4f385c0": {
+      "workers": {
+        "app/page": {
+          "moduleId": 24271,
+          "async": false,
+          "exportedName": "$$RSC_SERVER_CACHE_0",
+          "filename": "Documents/dev/react-execercies2/rsc/next16/src/services/products/server.ts"
+        }
+      },
+      "layer": {
+        "app/page": "rsc"
+      },
+      "filename": "Documents/dev/react-execercies2/rsc/next16/src/services/products/server.ts",
+      "exportedName": "$$RSC_SERVER_CACHE_0"
+    }
+  },
+  "edge": {},
+  "encryptionKey": "DG/WJ4NwRGie7cWMK4MHHsGbLnH9/OfIVVu+2bUbBzE="
+}
