@@ -1,0 +1,44 @@
+import { useState } from "react";
+import { Home } from "lucide-react";
+import { BurgerButtons } from "../components/menu/BurgerButtons";
+import { Menu } from "../components/menu";
+import { useFetchCategories } from "@/services/categories/categories";
+
+export function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+  const onClose = () => setIsOpen(false);
+
+  const categoriesQuery = useFetchCategories();
+
+  return (
+    <>
+      <header className="p-4 flex items-center bg-gray-800 text-white shadow-lg">
+        <BurgerButtons onClick={() => setIsOpen(true)} />
+      </header>
+      <aside
+        className={`fixed top-0 left-0 h-full w-80 bg-gray-900 text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
+          isOpen ? "translate-x-0" : "-translate-x-full hidden"
+        }`}
+      >
+        <Menu.Title onClose={onClose}>Categories</Menu.Title>
+
+        <nav className="flex-1 p-4 overflow-y-auto">
+          <Menu.Link to="/" onClick={onClose}>
+            <Home size={20} />
+            <Menu.Text>Home</Menu.Text>
+          </Menu.Link>
+
+          {categoriesQuery.data?.map((category: any) => (
+            <Menu.Link
+              key={category.id}
+              to={`/category/${category.id}`}
+              onClick={onClose}
+            >
+              <Menu.Text>{category.description}</Menu.Text>
+            </Menu.Link>
+          ))}
+        </nav>
+      </aside>
+    </>
+  );
+}
