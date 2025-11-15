@@ -17,6 +17,7 @@ export const fetchProductByCategory = async (categoryId: string) => {
 	const response = await fetch(
 		`http://localhost:3000/products?categoryId=${categoryId}`,
 	);
+
 	if (!response.ok) {
 		throw new Error("Failed to fetch products by category");
 	}

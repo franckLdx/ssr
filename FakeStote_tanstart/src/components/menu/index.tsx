@@ -2,20 +2,23 @@ import { Link as RouterLink } from "@tanstack/react-router";
 
 type LinkProps = {
 	to: string;
+	params?: Record<string, any>;
 	children: React.ReactNode;
 	onClick?: () => void;
 };
 
-function Link({ to, children, onClick }: LinkProps) {
+function Link({ to, params, children, onClick }: LinkProps) {
 	return (
 		<RouterLink
 			to={to}
+			params={params}
 			onClick={onClick}
 			className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
 			activeProps={{
 				className:
 					"flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2",
 			}}
+			reloadDocument={true}
 		>
 			{children}
 		</RouterLink>

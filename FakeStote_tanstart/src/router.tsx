@@ -1,16 +1,13 @@
-import { createRouter } from "@tanstack/react-router";
-
-// Import the generated route tree
+import { createRouter, ErrorComponent, Link } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 import { QueryClient } from "@tanstack/react-query";
 import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query";
+import { NotFoundComponent } from "./components/NotFoundComponent";
 
-// Create a new router instance
 export const getRouter = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        // Évite le refetch automatique au montage du composant
         staleTime: Infinity,
         gcTime: 1000 * 60 * 60 * 24 * 365, // 24 heures
         retry: 1,
@@ -23,6 +20,10 @@ export const getRouter = () => {
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
     context: { queryClient },
+    defaultErrorComponent: ({ error, reset }) => (
+      <ErrorComponent error={error} />
+    ),
+    defaultNotFoundComponent: NotFoundComponent
   });
 
   setupRouterSsrQueryIntegration({

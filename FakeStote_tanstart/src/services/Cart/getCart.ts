@@ -18,6 +18,12 @@ export const useFetchCart = () =>
 		queryFn: () => fetchCart(),
 	});
 
+export const prefetchCart = async (queryClient: any) =>
+	queryClient.prefetchQuery({
+		queryKey: getCartKeys(),
+		queryFn: fetchCart,
+	});
+
 export const useIsProductInCart = (productId: string): boolean | undefined => {
 	const useGetCart = useFetchCart();
 	return useGetCart.data?.products?.some(

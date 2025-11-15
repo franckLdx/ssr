@@ -1,5 +1,5 @@
 type ButtonProps = {
-	onClick: () => void;
+	onClick?: () => void;
 	"aria-label"?: string;
 	children?: React.ReactNode;
 };

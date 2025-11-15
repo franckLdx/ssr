@@ -1,8 +1,11 @@
 import { useState } from "react";
-import { Home } from "lucide-react";
+import { Home, ShoppingBag, ShoppingBagIcon, ShoppingBasket, ShoppingCart, ShoppingCartIcon } from "lucide-react";
 import { BurgerButtons } from "../components/menu/BurgerButtons";
 import { Menu } from "../components/menu";
 import { useFetchCategories } from "@/services/categories/categories";
+import { Button } from "@/components/Button";
+import { Link } from "@tanstack/react-router";
+import { Route as categoryRoute } from "./category/$categoryId";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,15 +13,16 @@ export function Header() {
 
   const categoriesQuery = useFetchCategories();
 
+  console.log("Categories:", categoryRoute.to);
   return (
     <>
-      <header className="p-4 flex items-center bg-gray-800 text-white shadow-lg">
+      <header className="p-4 flex items-center justify-between bg-gray-800 text-white shadow-lg">
         <BurgerButtons onClick={() => setIsOpen(true)} />
-      </header>
+        {/* <Link to={cartRoute.to}><ShoppingCart size={24} /></Link> */}
+      </header >
       <aside
-        className={`fixed top-0 left-0 h-full w-80 bg-gray-900 text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
-          isOpen ? "translate-x-0" : "-translate-x-full hidden"
-        }`}
+        className={`fixed top-0 left-0 h-full w-80 bg-gray-900 text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${isOpen ? "translate-x-0" : "-translate-x-full hidden"
+          }`}
       >
         <Menu.Title onClose={onClose}>Categories</Menu.Title>
 
@@ -31,7 +35,8 @@ export function Header() {
           {categoriesQuery.data?.map((category: any) => (
             <Menu.Link
               key={category.id}
-              to={`/category/${category.id}`}
+              to={categoryRoute.to}
+              params={{ categoryId: category.id }}
               onClick={onClose}
             >
               <Menu.Text>{category.description}</Menu.Text>

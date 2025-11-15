@@ -9,7 +9,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-import { fetchCart, getCartKeys } from "@/services/Cart/getCart";
+import { prefetchCart } from "@/services/Cart/getCart";
 import { Header } from "./-Header";
 import { ProductsList } from "./-ProductsList";
 
@@ -31,10 +31,7 @@ export const Route = createFileRoute("/category/$categoryId")({
       queryFn: () => fetchCategory(categoryId),
     });
 
-    queryClient.prefetchQuery({
-      queryKey: getCartKeys(),
-      queryFn: fetchCart,
-    });
+    prefetchCart(queryClient);
 
     return {
       dehydratedState: dehydrate(queryClient),
