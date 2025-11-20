@@ -1,0 +1,1 @@
+import{R as r,j as e,T as s}from"./main-BzESYTLN.js";import{H as a}from"./HydrationBoundary-BYDxGHzL.js";function i(){const{dehydratedState:t}=r.useLoaderData();return e.jsx(a,{state:t,children:e.jsx("div",{className:"flex items-center justify-center min-h-screen",children:e.jsx(s.H1,{children:"Welcome Fake Store !"})})})}export{i as component};

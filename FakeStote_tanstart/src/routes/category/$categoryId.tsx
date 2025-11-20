@@ -20,9 +20,9 @@ export const Route = createFileRoute("/category/$categoryId")({
   loader: async ({ params }): Promise<any> => {
     const queryClient = createLoaderQueryClient();
 
-    const categoryId = params.categoryId;
-
     ensureCategories(queryClient);
+
+    const categoryId = params.categoryId;
 
     queryClient.prefetchQuery({
       queryKey: getProductsByCatrgory(categoryId),

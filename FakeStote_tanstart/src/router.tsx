@@ -20,7 +20,7 @@ export const getRouter = () => {
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
     context: { queryClient },
-    defaultErrorComponent: ({ error, reset }) => (
+    defaultErrorComponent: ({ error }) => (
       <ErrorComponent error={error} />
     ),
     defaultNotFoundComponent: NotFoundComponent

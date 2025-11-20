@@ -1,16 +1,12 @@
 import { jsx } from "react/jsx-runtime";
-import { R as Route, T as Title } from "./router-BxeZEsPy.js";
+import { R as Route, T as Title } from "./router-qd8lI1h3.js";
 import { HydrationBoundary } from "@tanstack/react-query";
 import "@tanstack/react-router";
-import "@tanstack/react-router-devtools";
-import "@tanstack/react-devtools";
-import "@tanstack/react-query-devtools";
 import "react";
 import "lucide-react";
-import "../server.js";
-import "node:async_hooks";
-import "@tanstack/react-router/ssr/server";
-import "node:fs";
+import "@tanstack/react-devtools";
+import "@tanstack/react-query-devtools";
+import "@tanstack/react-router-devtools";
 import "@tanstack/react-router-ssr-query";
 function App() {
   const {

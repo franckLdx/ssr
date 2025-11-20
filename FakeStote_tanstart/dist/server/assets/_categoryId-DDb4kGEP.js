@@ -1,16 +1,12 @@
 import { jsx, jsxs, Fragment } from "react/jsx-runtime";
 import { useQueryClient, useMutation, HydrationBoundary } from "@tanstack/react-query";
-import { u as useFetchCategory, T as Title, a as useFetchCart, g as getCartKeys, b as useIsProductInCart, B as Button, c as useFetchProductsByCatrgory, d as Route } from "./router-BxeZEsPy.js";
+import { u as useFetchCategory, T as Title, a as useFetchCart, g as getCartKeys, b as useIsProductInCart, B as Button, c as useFetchProductsByCatrgory, d as Route, L as Loading } from "./router-qd8lI1h3.js";
 import "@tanstack/react-router";
-import "@tanstack/react-router-devtools";
-import "@tanstack/react-devtools";
-import "@tanstack/react-query-devtools";
 import "react";
 import "lucide-react";
-import "../server.js";
-import "node:async_hooks";
-import "@tanstack/react-router/ssr/server";
-import "node:fs";
+import "@tanstack/react-devtools";
+import "@tanstack/react-query-devtools";
+import "@tanstack/react-router-devtools";
 import "@tanstack/react-router-ssr-query";
 function Header({ categoryId }) {
   const categoryQuery = useFetchCategory(categoryId);
@@ -127,10 +123,10 @@ function CategoryPage() {
   const {
     categoryId
   } = Route.useParams();
-  return /* @__PURE__ */ jsx(HydrationBoundary, { state: dehydratedState, children: /* @__PURE__ */ jsxs("section", { children: [
+  return /* @__PURE__ */ jsx(HydrationBoundary, { state: dehydratedState, children: /* @__PURE__ */ jsx(Loading, { children: /* @__PURE__ */ jsxs("section", { children: [
     /* @__PURE__ */ jsx(Header, { categoryId }),
     /* @__PURE__ */ jsx(ProductsList, { categoryId })
-  ] }) });
+  ] }) }) });
 }
 export {
   CategoryPage as component
