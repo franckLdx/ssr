@@ -1,9 +1,7 @@
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
-import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { TanStackDevtools } from "@tanstack/react-devtools";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
+import { Loading } from "@/components/Loading";
 import { Header } from "./-Header";
+import { DevTools } from "./-DevTools";
 
 import appCss from "../styles.css?url";
 
@@ -39,27 +37,15 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="text-white">
-        <Header />
-        <main className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
-          {children}
-        </main>
-        <TanStackDevtools
-          config={{
-            position: "bottom-right",
-          }}
-          plugins={[
-            {
-              name: "Tanstack Router",
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-            {
-              name: "TanStack Query",
-              render: <ReactQueryDevtools />,
-            },
-          ]}
-        />
+        <Loading >
+          <Header />
+          <main className="min-h-screen bg-linear-to-b from-slate-900 via-slate-800 to-slate-900">
+            {children}
+          </main>
+          <DevTools />
+        </Loading >
         <Scripts />
       </body>
-    </html>
+    </html >
   );
 }

@@ -1,22 +1,16 @@
 import { Title } from "@/components/typo";
-import {
-	CATEGORIES_KEY,
-	fetchCategories,
-} from "@/services/categories/categories";
+import { ensureCategories } from "@/services/categories/categories";
+import { createLoaderQueryClient } from "@/services/loader";
 import {
 	dehydrate,
 	HydrationBoundary,
-	QueryClient,
 } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 
 const loader = async (): Promise<any> => {
-	const queryClient = new QueryClient();
+	const queryClient = createLoaderQueryClient();
 
-	queryClient.prefetchQuery({
-		queryKey: CATEGORIES_KEY,
-		queryFn: fetchCategories,
-	});
+	ensureCategories(queryClient);
 
 	return {
 		dehydratedState: dehydrate(queryClient),

@@ -1,4 +1,4 @@
-import { createRouter, ErrorComponent, Link } from "@tanstack/react-router";
+import { createRouter, ErrorComponent } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 import { QueryClient } from "@tanstack/react-query";
 import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query";

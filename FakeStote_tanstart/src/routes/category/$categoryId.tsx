@@ -6,20 +6,23 @@ import {
 import {
   dehydrate,
   HydrationBoundary,
-  QueryClient,
 } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { prefetchCart } from "@/services/Cart/getCart";
 import { Header } from "./-Header";
 import { ProductsList } from "./-ProductsList";
+import { ensureCategories } from "@/services/categories/categories";
+import { createLoaderQueryClient } from "@/services/loader";
+import { Loading } from "@/components/Loading";
 
 export const Route = createFileRoute("/category/$categoryId")({
   component: CategoryPage,
   loader: async ({ params }): Promise<any> => {
+    const queryClient = createLoaderQueryClient();
+
     const categoryId = params.categoryId;
-    const queryClient = new QueryClient({
-      defaultOptions: { queries: { staleTime: Infinity } },
-    });
+
+    ensureCategories(queryClient);
 
     queryClient.prefetchQuery({
       queryKey: getProductsByCatrgory(categoryId),
@@ -45,10 +48,12 @@ function CategoryPage() {
 
   return (
     <HydrationBoundary state={dehydratedState}>
-      <section>
-        <Header categoryId={categoryId} />
-        <ProductsList categoryId={categoryId} />
-      </section>
+      <Loading>
+        <section>
+          <Header categoryId={categoryId} />
+          <ProductsList categoryId={categoryId} />
+        </section>
+      </Loading>
     </HydrationBoundary>
   );
 }

@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Home, ShoppingBag, ShoppingBagIcon, ShoppingBasket, ShoppingCart, ShoppingCartIcon } from "lucide-react";
+import { Home, ShoppingCart } from "lucide-react";
 import { BurgerButtons } from "../components/menu/BurgerButtons";
 import { Menu } from "../components/menu";
 import { useFetchCategories } from "@/services/categories/categories";
-import { Button } from "@/components/Button";
-import { Link } from "@tanstack/react-router";
 import { Route as categoryRoute } from "./category/$categoryId";
+import { Route as cartRoute } from "./pipe/cart";
+import { Link } from "@tanstack/react-router";
+import { Button } from "@/components/Button";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,12 +14,11 @@ export function Header() {
 
   const categoriesQuery = useFetchCategories();
 
-  console.log("Categories:", categoryRoute.to);
   return (
     <>
       <header className="p-4 flex items-center justify-between bg-gray-800 text-white shadow-lg">
         <BurgerButtons onClick={() => setIsOpen(true)} />
-        {/* <Link to={cartRoute.to}><ShoppingCart size={24} /></Link> */}
+        <Link to={cartRoute.to}><Button><ShoppingCart size={24} /></Button></Link>
       </header >
       <aside
         className={`fixed top-0 left-0 h-full w-80 bg-gray-900 text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${isOpen ? "translate-x-0" : "-translate-x-full hidden"
