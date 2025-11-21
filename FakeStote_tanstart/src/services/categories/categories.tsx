@@ -1,5 +1,6 @@
 import { QueryClient, queryOptions, useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import type { Category } from "./declaration";
+import { logInfo, wait } from "@/components/log";
 
 export const fetchCategories = async () => {
 	const response = await fetch("http://localhost:3000/categories");

@@ -1,6 +1,6 @@
 import { jsx, jsxs, Fragment } from "react/jsx-runtime";
-import { useQueryClient, useMutation, HydrationBoundary } from "@tanstack/react-query";
-import { u as useFetchCategory, T as Title, a as useFetchCart, g as getCartKeys, b as useIsProductInCart, B as Button, c as useFetchProductsByCatrgory, d as Route, L as Loading } from "./router-qd8lI1h3.js";
+import { u as useFetchCategory, T as Title, a as useFetchCart, g as getCartKeys, b as useIsProductInCart, B as Button, c as useFetchProductsByCatrgory, R as Route, L as Loading } from "./router-DukS3gLk.js";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 import "@tanstack/react-router";
 import "react";
 import "lucide-react";
@@ -118,15 +118,12 @@ function ProductsList({ categoryId }) {
 }
 function CategoryPage() {
   const {
-    dehydratedState
-  } = Route.useLoaderData();
-  const {
     categoryId
   } = Route.useParams();
-  return /* @__PURE__ */ jsx(HydrationBoundary, { state: dehydratedState, children: /* @__PURE__ */ jsx(Loading, { children: /* @__PURE__ */ jsxs("section", { children: [
+  return /* @__PURE__ */ jsx(Loading, { children: /* @__PURE__ */ jsxs("section", { children: [
     /* @__PURE__ */ jsx(Header, { categoryId }),
     /* @__PURE__ */ jsx(ProductsList, { categoryId })
-  ] }) }) });
+  ] }) });
 }
 export {
   CategoryPage as component

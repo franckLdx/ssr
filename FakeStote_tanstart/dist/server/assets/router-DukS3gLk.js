@@ -2,7 +2,7 @@ import { jsx, jsxs, Fragment } from "react/jsx-runtime";
 import { Link as Link$1, createFileRoute, lazyRouteComponent, createRootRoute, HeadContent, Scripts, createRouter, ErrorComponent } from "@tanstack/react-router";
 import { Suspense, useState } from "react";
 import { Menu as Menu$1, X, ShoppingCart, Home } from "lucide-react";
-import { queryOptions, useSuspenseQuery, QueryClient, dehydrate } from "@tanstack/react-query";
+import { useSuspenseQuery, queryOptions, QueryClient, dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
@@ -92,10 +92,12 @@ const fetchCategory = async (categoryId) => {
   return category;
 };
 const getCategoryKeys = (categoryId) => ["category", categoryId];
-const useFetchCategory = (categoryId) => useSuspenseQuery({
+const fetchCategoryOptions = (categoryId) => queryOptions({
   queryKey: getCategoryKeys(categoryId),
   queryFn: () => fetchCategory(categoryId)
 });
+const ensureCategory = (queryClient, categoryId) => queryClient.ensureQueryData(fetchCategoryOptions(categoryId));
+const useFetchCategory = (categoryId) => useSuspenseQuery(fetchCategoryOptions(categoryId));
 const fetchProductByCategory = async (categoryId) => {
   const response = await fetch(
     `http://localhost:3000/products?categoryId=${categoryId}`
@@ -111,9 +113,32 @@ const getProductsByCatrgory = (categoryId) => [
   "byCategory",
   categoryId
 ];
-const useFetchProductsByCatrgory = (categoryId) => useSuspenseQuery({
+const fetchProductByCategoryOptions = (categoryId) => queryOptions({
   queryKey: getProductsByCatrgory(categoryId),
   queryFn: () => fetchProductByCategory(categoryId)
+});
+const ensureProductByCategoryOptions = (queryClient, categoryId) => queryClient.ensureQueryData(fetchProductByCategoryOptions(categoryId));
+const useFetchProductsByCatrgory = (categoryId) => useSuspenseQuery(fetchProductByCategoryOptions(categoryId));
+const createLoaderQueryClient = () => new QueryClient({
+  defaultOptions: { queries: { staleTime: Infinity } }
+});
+const $$splitComponentImporter$2 = () => import("./_categoryId-CJRt4BDk.js");
+const Route$3 = createFileRoute("/category/$categoryId")({
+  component: lazyRouteComponent($$splitComponentImporter$2, "component"),
+  loader: async ({
+    params
+  }) => {
+    const queryClient = createLoaderQueryClient();
+    const categoryId = params.categoryId;
+    return Promise.all([ensureCategory(queryClient, categoryId), ensureProductByCategoryOptions(queryClient, categoryId)]);
+  }
+});
+const $$splitComponentImporter$1 = () => import("./cart-BCoPNNur.js");
+const Route$2 = createFileRoute("/pipe/cart")({
+  loader: async () => {
+    createLoaderQueryClient();
+  },
+  component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
 const fetchCart = async () => {
   const response = await fetch(`http://localhost:3000/carts/1`);
@@ -123,57 +148,18 @@ const fetchCart = async () => {
   return response.json();
 };
 const getCartKeys = () => ["cart"];
-const useFetchCart = () => useSuspenseQuery({
+const fetchCartOptions = queryOptions({
   queryKey: getCartKeys(),
   queryFn: () => fetchCart()
 });
-const prefetchCart = async (queryClient) => queryClient.prefetchQuery({
-  queryKey: getCartKeys(),
-  queryFn: fetchCart
-});
+const useFetchCart = () => useSuspenseQuery(fetchCartOptions);
+const ensureCart = async (queryClient) => queryClient.ensureQueryData(fetchCartOptions);
 const useIsProductInCart = (productId) => {
   const useGetCart = useFetchCart();
   return useGetCart.data?.products?.some(
     (item) => item.productId === productId
   );
 };
-const createLoaderQueryClient = () => new QueryClient({
-  defaultOptions: { queries: { staleTime: Infinity } }
-});
-const $$splitComponentImporter$2 = () => import("./_categoryId-DDb4kGEP.js");
-const Route$3 = createFileRoute("/category/$categoryId")({
-  component: lazyRouteComponent($$splitComponentImporter$2, "component"),
-  loader: async ({
-    params
-  }) => {
-    const queryClient = createLoaderQueryClient();
-    ensureCategories(queryClient);
-    const categoryId = params.categoryId;
-    queryClient.prefetchQuery({
-      queryKey: getProductsByCatrgory(categoryId),
-      queryFn: () => fetchProductByCategory(categoryId)
-    });
-    queryClient.prefetchQuery({
-      queryKey: getCategoryKeys(categoryId),
-      queryFn: () => fetchCategory(categoryId)
-    });
-    prefetchCart(queryClient);
-    return {
-      dehydratedState: dehydrate(queryClient)
-    };
-  }
-});
-const $$splitComponentImporter$1 = () => import("./cart-BCoPNNur.js");
-const Route$2 = createFileRoute("/pipe/cart")({
-  loader: async () => {
-    const queryClient = createLoaderQueryClient();
-    ensureCategories(queryClient);
-    return {
-      dehydratedState: dehydrate(queryClient)
-    };
-  },
-  component: lazyRouteComponent($$splitComponentImporter$1, "component")
-});
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = () => setIsOpen(false);
@@ -210,6 +196,12 @@ function Header() {
     )
   ] });
 }
+async function headerLoader(queryClient) {
+  return Promise.all([
+    ensureCategories(queryClient),
+    ensureCart(queryClient)
+  ]);
+}
 function DevTools() {
   return /* @__PURE__ */ jsx(
     TanStackDevtools,
@@ -230,7 +222,7 @@ function DevTools() {
     }
   );
 }
-const appCss = "/assets/styles-Cw54VDS_.css";
+const appCss = "/assets/styles-CLap-MPT.css";
 const Route$1 = createRootRoute({
   head: () => ({
     meta: [
@@ -252,32 +244,32 @@ const Route$1 = createRootRoute({
       }
     ]
   }),
-  shellComponent: RootDocument
+  shellComponent: RootDocument,
+  loader: async () => {
+    const queryClient = createLoaderQueryClient();
+    await headerLoader(queryClient);
+    return {
+      dehydratedState: dehydrate(queryClient)
+    };
+  }
 });
 function RootDocument({ children }) {
+  const { dehydratedState } = Route$1.useLoaderData();
   return /* @__PURE__ */ jsxs("html", { lang: "en", children: [
     /* @__PURE__ */ jsx("head", { children: /* @__PURE__ */ jsx(HeadContent, {}) }),
     /* @__PURE__ */ jsxs("body", { className: "text-white", children: [
-      /* @__PURE__ */ jsxs(Loading, { children: [
+      /* @__PURE__ */ jsx(HydrationBoundary, { state: dehydratedState, children: /* @__PURE__ */ jsxs(Loading, { children: [
         /* @__PURE__ */ jsx(Header, {}),
         /* @__PURE__ */ jsx("main", { className: "min-h-screen bg-linear-to-b from-slate-900 via-slate-800 to-slate-900", children }),
         /* @__PURE__ */ jsx(DevTools, {})
-      ] }),
+      ] }) }),
       /* @__PURE__ */ jsx(Scripts, {})
     ] })
   ] });
 }
-const $$splitComponentImporter = () => import("./index-CMVGOlv4.js");
-const loader = async () => {
-  const queryClient = createLoaderQueryClient();
-  ensureCategories(queryClient);
-  return {
-    dehydratedState: dehydrate(queryClient)
-  };
-};
+const $$splitComponentImporter = () => import("./index-E20ayRT2.js");
 const Route = createFileRoute("/")({
-  component: lazyRouteComponent($$splitComponentImporter, "component"),
-  loader
+  component: lazyRouteComponent($$splitComponentImporter, "component")
 });
 const IndexRoute = Route.update({
   id: "/",
@@ -348,12 +340,11 @@ const router = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
 export {
   Button as B,
   Loading as L,
-  Route as R,
+  Route$3 as R,
   Title as T,
   useFetchCart as a,
   useIsProductInCart as b,
   useFetchProductsByCatrgory as c,
-  Route$3 as d,
   getCartKeys as g,
   router as r,
   useFetchCategory as u

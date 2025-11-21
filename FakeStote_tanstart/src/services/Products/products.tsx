@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { QueryClient, queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 
 export type ProductModel = {
 	id: string;
@@ -13,7 +13,7 @@ export type ProductModel = {
 	};
 };
 
-export const fetchProductByCategory = async (categoryId: string) => {
+const fetchProductByCategory = async (categoryId: string) => {
 	const response = await fetch(
 		`http://localhost:3000/products?categoryId=${categoryId}`,
 	);
@@ -26,14 +26,23 @@ export const fetchProductByCategory = async (categoryId: string) => {
 	return products;
 };
 
+
 export const getProductsByCatrgory = (categoryId: string) => [
 	"producs",
 	"byCategory",
 	categoryId,
 ];
 
+const fetchProductByCategoryOptions = (categoryId: string) => queryOptions({
+	queryKey: getProductsByCatrgory(categoryId),
+	queryFn: () => fetchProductByCategory(categoryId),
+})
+
+export const prefetchProductByCategoryOptions = (queryClient: QueryClient, categoryId: string) =>
+	queryClient.prefetchQuery(fetchProductByCategoryOptions(categoryId));
+
+export const ensureProductByCategoryOptions = (queryClient: QueryClient, categoryId: string) =>
+	queryClient.ensureQueryData(fetchProductByCategoryOptions(categoryId));
+
 export const useFetchProductsByCatrgory = (categoryId: string) =>
-	useSuspenseQuery({
-		queryKey: getProductsByCatrgory(categoryId),
-		queryFn: () => fetchProductByCategory(categoryId),
-	});
+	useSuspenseQuery(fetchProductByCategoryOptions(categoryId));

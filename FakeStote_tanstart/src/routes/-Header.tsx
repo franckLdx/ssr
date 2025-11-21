@@ -2,11 +2,13 @@ import { useState } from "react";
 import { Home, ShoppingCart } from "lucide-react";
 import { BurgerButtons } from "../components/menu/BurgerButtons";
 import { Menu } from "../components/menu";
-import { useFetchCategories } from "@/services/categories/categories";
+import { ensureCategories, useFetchCategories } from "@/services/categories/categories";
 import { Route as categoryRoute } from "./category/$categoryId";
 import { Route as cartRoute } from "./pipe/cart";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/Button";
+import { QueryClient } from "@tanstack/react-query";
+import { ensureCart } from "@/services/Cart/getCart";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,4 +48,11 @@ export function Header() {
       </aside>
     </>
   );
+}
+
+export async function headerLoader(queryClient: QueryClient) {
+  return Promise.all([
+    ensureCategories(queryClient),
+    ensureCart(queryClient)
+  ])
 }

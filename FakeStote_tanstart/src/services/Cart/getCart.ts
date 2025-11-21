@@ -1,7 +1,7 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { QueryClient, queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { CartModel } from "./declaration";
 
-export const fetchCart = async () => {
+const fetchCart = async () => {
 	const response = await fetch(`http://localhost:3000/carts/1`);
 	if (!response.ok) {
 		throw new Error("Failed to fetch cart");
@@ -12,17 +12,19 @@ export const fetchCart = async () => {
 
 export const getCartKeys = () => ["cart"];
 
-export const useFetchCart = () =>
-	useSuspenseQuery({
-		queryKey: getCartKeys(),
-		queryFn: () => fetchCart(),
-	});
+const fetchCartOptions = queryOptions({
+	queryKey: getCartKeys(),
+	queryFn: () => fetchCart(),
+});
 
-export const prefetchCart = async (queryClient: any) =>
-	queryClient.prefetchQuery({
-		queryKey: getCartKeys(),
-		queryFn: fetchCart,
-	});
+export const useFetchCart = () =>
+	useSuspenseQuery(fetchCartOptions);
+
+export const prefetchCart = async (queryClient: QueryClient) =>
+	queryClient.prefetchQuery(fetchCartOptions);
+
+export const ensureCart = async (queryClient: QueryClient) =>
+	queryClient.ensureQueryData(fetchCartOptions);
 
 export const useIsProductInCart = (productId: string): boolean | undefined => {
 	const useGetCart = useFetchCart();
