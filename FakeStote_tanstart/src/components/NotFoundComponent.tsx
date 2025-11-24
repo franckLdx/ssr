@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Title } from "./typo";
+import { Title } from "./Typo";
 
 export function NotFoundComponent() {
   return (

@@ -1,4 +1,4 @@
-import { Title } from "@/components/typo";
+import { Title } from "@/components/Typo";
 import { createFileRoute } from "@tanstack/react-router";
 
 

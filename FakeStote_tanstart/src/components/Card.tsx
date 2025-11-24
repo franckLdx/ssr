@@ -1,4 +1,4 @@
-import { Title } from "./typo";
+import { Title } from "./Typo";
 
 function Border({ children }: { children: React.ReactNode }) {
 	return (
