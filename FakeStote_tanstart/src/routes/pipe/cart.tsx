@@ -1,9 +1,9 @@
-import { createLoaderQueryClient } from '@/services/loader';
+import { QueryClient } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/pipe/cart')({
-  loader: async (): Promise<any> => {
-    const queryClient = createLoaderQueryClient();
+  loader: async ({ context }): Promise<any> => {
+    const queryClient = (context as any).queryClient as QueryClient;
   },
 
   component: RouteComponent,

@@ -5,13 +5,13 @@ import {
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "./-Header";
 import { ProductsList } from "./-ProductsList";
-import { createLoaderQueryClient } from "@/services/loader";
 import { Loading } from "@/components/Loading";
+import { QueryClient } from "@tanstack/react-query";
 
 export const Route = createFileRoute("/category/$categoryId")({
   component: CategoryPage,
-  loader: async ({ params }): Promise<any> => {
-    const queryClient = createLoaderQueryClient();
+  loader: async ({ params, context }): Promise<any> => {
+    const queryClient = (context as any).queryClient as QueryClient;
 
     const categoryId = params.categoryId;
 

@@ -2,10 +2,13 @@ import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { Loading } from "@/components/Loading";
 import { Header, headerLoader } from "./-Header";
 import { DevTools } from "./-DevTools";
-import { createLoaderQueryClient, } from "@/services/loader";
-import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
 import appCss from "../styles.css?url";
+
+type RootLoaderData = {
+  dehydratedState: any
+}
 
 export const Route = createRootRoute({
   head: () => ({
@@ -30,8 +33,8 @@ export const Route = createRootRoute({
   }),
 
   shellComponent: RootDocument,
-  loader: async (): Promise<any> => {
-    const queryClient = createLoaderQueryClient();
+  loader: async ({ context }): Promise<RootLoaderData> => {
+    const queryClient = (context as any).queryClient as QueryClient;
 
     await headerLoader(queryClient);
 

@@ -2,7 +2,7 @@ import { jsx, jsxs, Fragment } from "react/jsx-runtime";
 import { Link as Link$1, createFileRoute, lazyRouteComponent, createRootRoute, HeadContent, Scripts, createRouter, ErrorComponent } from "@tanstack/react-router";
 import { Suspense, useState } from "react";
 import { Menu as Menu$1, X, ShoppingCart, Home } from "lucide-react";
-import { useSuspenseQuery, queryOptions, QueryClient, dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { useSuspenseQuery, queryOptions, dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
@@ -119,24 +119,24 @@ const fetchProductByCategoryOptions = (categoryId) => queryOptions({
 });
 const ensureProductByCategoryOptions = (queryClient, categoryId) => queryClient.ensureQueryData(fetchProductByCategoryOptions(categoryId));
 const useFetchProductsByCatrgory = (categoryId) => useSuspenseQuery(fetchProductByCategoryOptions(categoryId));
-const createLoaderQueryClient = () => new QueryClient({
-  defaultOptions: { queries: { staleTime: Infinity } }
-});
-const $$splitComponentImporter$2 = () => import("./_categoryId-CJRt4BDk.js");
+const $$splitComponentImporter$2 = () => import("./_categoryId-i3UxCbIV.js");
 const Route$3 = createFileRoute("/category/$categoryId")({
   component: lazyRouteComponent($$splitComponentImporter$2, "component"),
   loader: async ({
-    params
+    params,
+    context
   }) => {
-    const queryClient = createLoaderQueryClient();
+    const queryClient = context.queryClient;
     const categoryId = params.categoryId;
     return Promise.all([ensureCategory(queryClient, categoryId), ensureProductByCategoryOptions(queryClient, categoryId)]);
   }
 });
 const $$splitComponentImporter$1 = () => import("./cart-BCoPNNur.js");
 const Route$2 = createFileRoute("/pipe/cart")({
-  loader: async () => {
-    createLoaderQueryClient();
+  loader: async ({
+    context
+  }) => {
+    context.queryClient;
   },
   component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
@@ -222,7 +222,7 @@ function DevTools() {
     }
   );
 }
-const appCss = "/assets/styles-CLap-MPT.css";
+const appCss = "/assets/styles-B_D4lkoZ.css";
 const Route$1 = createRootRoute({
   head: () => ({
     meta: [
@@ -245,8 +245,8 @@ const Route$1 = createRootRoute({
     ]
   }),
   shellComponent: RootDocument,
-  loader: async () => {
-    const queryClient = createLoaderQueryClient();
+  loader: async ({ context }) => {
+    const queryClient = context.queryClient;
     await headerLoader(queryClient);
     return {
       dehydratedState: dehydrate(queryClient)
@@ -267,7 +267,7 @@ function RootDocument({ children }) {
     ] })
   ] });
 }
-const $$splitComponentImporter = () => import("./index-E20ayRT2.js");
+const $$splitComponentImporter = () => import("./index-BqKzd2Ru.js");
 const Route = createFileRoute("/")({
   component: lazyRouteComponent($$splitComponentImporter, "component")
 });

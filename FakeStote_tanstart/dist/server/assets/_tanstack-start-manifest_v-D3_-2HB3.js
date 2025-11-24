@@ -1,0 +1,4 @@
+const tsrStartManifest = () => ({ "routes": { "__root__": { "filePath": "C:/Users/Utilisateur/Documents/dev/ssr/ssr/FakeStote_tanstart/src/routes/__root.tsx", "children": ["/", "/category/$categoryId", "/pipe/cart"], "preloads": ["/assets/main-BywWb2uP.js"], "assets": [] }, "/": { "filePath": "C:/Users/Utilisateur/Documents/dev/ssr/ssr/FakeStote_tanstart/src/routes/index.tsx", "assets": [], "preloads": ["/assets/index-DfiUPhxH.js"] }, "/category/$categoryId": { "filePath": "C:/Users/Utilisateur/Documents/dev/ssr/ssr/FakeStote_tanstart/src/routes/category/$categoryId.tsx", "assets": [], "preloads": ["/assets/_categoryId-CuZ-maGY.js"] }, "/pipe/cart": { "filePath": "C:/Users/Utilisateur/Documents/dev/ssr/ssr/FakeStote_tanstart/src/routes/pipe/cart.tsx", "assets": [], "preloads": ["/assets/cart-Fgy0Ni4Z.js"] } }, "clientEntry": "/assets/main-BywWb2uP.js" });
+export {
+  tsrStartManifest
+};
