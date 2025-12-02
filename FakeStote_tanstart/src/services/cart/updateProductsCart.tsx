@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import type { CartItemModel, CartModel } from "./declaration";
 import { getCartKeys, cartQueryOptions } from "./fetchCart";
-import type { ProductModel } from "../MyProducts/products";
+import type { ProductModel } from "../products/products";
 
 export const useAddProductToCart = () => {
 	const cart = useSuspenseQuery(cartQueryOptions);

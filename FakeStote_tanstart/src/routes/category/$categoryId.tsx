@@ -1,7 +1,7 @@
 import { ensureCategory } from "@/services/categories/category";
 import {
   ensureProductByCategoryOptions,
-} from "@/services/MyProducts/products";
+} from "@/services/products/products";
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "./-Header";
 import { ProductsList } from "./-ProductsList";

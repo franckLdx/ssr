@@ -1,4 +1,4 @@
-import { useFetchProductsByCatrgory } from "@/services/MyProducts/products";
+import { useFetchProductsByCatrgory } from "@/services/products/products";
 import { ProductCard } from "./-ProductCard";
 
 type ProductsListProps = {

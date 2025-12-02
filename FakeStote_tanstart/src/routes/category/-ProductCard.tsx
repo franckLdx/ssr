@@ -1,5 +1,5 @@
 import { Card } from "@/components/Card";
-import type { ProductModel } from "@/services/MyProducts/products";
+import type { ProductModel } from "@/services/products/products";
 import { ProductCardFooter } from "./-ProductCartFooter";
 
 type ProductCardProps = {

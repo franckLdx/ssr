@@ -1,8 +1,8 @@
 import { Button } from "@/components/Button";
 import { Spinner } from "@/components/Spinner";
-import { useIsProductInCart } from "@/services/Mycart/fetchCart";
-import { useRemoveProductToCart, useAddProductToCart } from "@/services/Mycart/updateProductsCart";
-import type { ProductModel } from "@/services/MyProducts/products";
+import { useIsProductInCart } from "@/services/cart/fetchCart";
+import { useRemoveProductToCart, useAddProductToCart } from "@/services/cart/updateProductsCart";
+import type { ProductModel } from "@/services/products/products";
 
 type ProductCardFooterProps = {
 	product: ProductModel;
