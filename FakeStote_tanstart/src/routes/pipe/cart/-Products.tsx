@@ -1,4 +1,4 @@
-import { cartQueryOptions } from "@/services/cart/fetchCart";
+import { cartQueryOptions } from "@/services/Mycart/fetchCart";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
 export function Products() {
