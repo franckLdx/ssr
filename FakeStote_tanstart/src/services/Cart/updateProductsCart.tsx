@@ -1,10 +1,10 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import type { CartItemModel, CartModel } from "./declaration";
-import { useFetchCart, getCartKeys } from "./getCart";
+import { getCartKeys, cartQueryOptions } from "./fetchCart";
 import type { ProductModel } from "../Products/products";
 
 export const useAddProductToCart = () => {
-	const cart = useFetchCart();
+	const cart = useSuspenseQuery(cartQueryOptions);
 	const queryClient = useQueryClient();
 
 	return useMutation({
@@ -37,7 +37,7 @@ export const useAddProductToCart = () => {
 };
 
 export const useRemoveProductToCart = () => {
-	const cart = useFetchCart();
+	const cart = useSuspenseQuery(cartQueryOptions);
 	const queryClient = useQueryClient();
 
 	return useMutation({

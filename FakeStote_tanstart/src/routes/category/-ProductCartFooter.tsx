@@ -1,7 +1,7 @@
 import { Button } from "@/components/Button";
 import { Spinner } from "@/components/Spinner";
-import { useIsProductInCart } from "@/services/Cart/getCart";
-import { useRemoveProductToCart, useAddProductToCart } from "@/services/Cart/updateProductsCart";
+import { useIsProductInCart } from "@/services/cart/fetchCart";
+import { useRemoveProductToCart, useAddProductToCart } from "@/services/cart/updateProductsCart";
 import type { ProductModel } from "@/services/Products/products";
 
 type ProductCardFooterProps = {
@@ -29,5 +29,5 @@ export function ProductCardFooter({ product }: ProductCardFooterProps) {
 		<Button onClick={onRemove}>Retirer du panier</Button>
 	) : (
 		<Button onClick={onAdd}>Ajouter au panier</Button>
-	); 
+	);
 }

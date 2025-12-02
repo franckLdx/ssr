@@ -1,7 +1,8 @@
-import { useFetchCart } from "@/services/Cart/getCart";
+import { cartQueryOptions } from "@/services/cart/fetchCart";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 export function Products() {
-  const cartQuery = useFetchCart();
+  const cartQuery = useSuspenseQuery(cartQueryOptions);
   return <ul>
     {cartQuery.data?.products.map((product) => (
       <li key={product.productId}>

@@ -119,7 +119,7 @@ const fetchProductByCategoryOptions = (categoryId) => queryOptions({
 });
 const ensureProductByCategoryOptions = (queryClient, categoryId) => queryClient.ensureQueryData(fetchProductByCategoryOptions(categoryId));
 const useFetchProductsByCatrgory = (categoryId) => useSuspenseQuery(fetchProductByCategoryOptions(categoryId));
-const $$splitComponentImporter$2 = () => import("./_categoryId-i3UxCbIV.js");
+const $$splitComponentImporter$2 = () => import("./_categoryId-f_i-jDrh.js");
 const Route$3 = createFileRoute("/category/$categoryId")({
   component: lazyRouteComponent($$splitComponentImporter$2, "component"),
   loader: async ({
@@ -131,15 +131,6 @@ const Route$3 = createFileRoute("/category/$categoryId")({
     return Promise.all([ensureCategory(queryClient, categoryId), ensureProductByCategoryOptions(queryClient, categoryId)]);
   }
 });
-const $$splitComponentImporter$1 = () => import("./cart-BCoPNNur.js");
-const Route$2 = createFileRoute("/pipe/cart")({
-  loader: async ({
-    context
-  }) => {
-    context.queryClient;
-  },
-  component: lazyRouteComponent($$splitComponentImporter$1, "component")
-});
 const fetchCart = async () => {
   const response = await fetch(`http://localhost:3000/carts/1`);
   if (!response.ok) {
@@ -148,18 +139,27 @@ const fetchCart = async () => {
   return response.json();
 };
 const getCartKeys = () => ["cart"];
-const fetchCartOptions = queryOptions({
+const cartQueryOptions = queryOptions({
   queryKey: getCartKeys(),
   queryFn: () => fetchCart()
 });
-const useFetchCart = () => useSuspenseQuery(fetchCartOptions);
-const ensureCart = async (queryClient) => queryClient.ensureQueryData(fetchCartOptions);
+const ensureCart = async (queryClient) => queryClient.ensureQueryData(cartQueryOptions);
 const useIsProductInCart = (productId) => {
-  const useGetCart = useFetchCart();
-  return useGetCart.data?.products?.some(
+  const cartQUery = useSuspenseQuery(cartQueryOptions);
+  return cartQUery.data?.products?.some(
     (item) => item.productId === productId
   );
 };
+const $$splitComponentImporter$1 = () => import("./index-D6TLJSbs.js");
+const Route$2 = createFileRoute("/pipe/")({
+  loader: async ({
+    context
+  }) => {
+    const queryClient = context.queryClient;
+    await ensureCart(queryClient);
+  },
+  component: lazyRouteComponent($$splitComponentImporter$1, "component")
+});
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = () => setIsOpen(false);
@@ -267,7 +267,7 @@ function RootDocument({ children }) {
     ] })
   ] });
 }
-const $$splitComponentImporter = () => import("./index-BqKzd2Ru.js");
+const $$splitComponentImporter = () => import("./index-DE4cF-xQ.js");
 const Route = createFileRoute("/")({
   component: lazyRouteComponent($$splitComponentImporter, "component")
 });
@@ -276,9 +276,9 @@ const IndexRoute = Route.update({
   path: "/",
   getParentRoute: () => Route$1
 });
-const PipeCartRoute = Route$2.update({
-  id: "/pipe/cart",
-  path: "/pipe/cart",
+const PipeIndexRoute = Route$2.update({
+  id: "/pipe/",
+  path: "/pipe/",
   getParentRoute: () => Route$1
 });
 const CategoryCategoryIdRoute = Route$3.update({
@@ -289,7 +289,7 @@ const CategoryCategoryIdRoute = Route$3.update({
 const rootRouteChildren = {
   IndexRoute,
   CategoryCategoryIdRoute,
-  PipeCartRoute
+  PipeIndexRoute
 };
 const routeTree = Route$1._addFileChildren(rootRouteChildren)._addFileTypes();
 function H1({ className, children }) {
@@ -342,9 +342,9 @@ export {
   Loading as L,
   Route$3 as R,
   Title as T,
-  useFetchCart as a,
-  useIsProductInCart as b,
-  useFetchProductsByCatrgory as c,
+  useIsProductInCart as a,
+  useFetchProductsByCatrgory as b,
+  cartQueryOptions as c,
   getCartKeys as g,
   router as r,
   useFetchCategory as u

@@ -1,6 +1,7 @@
 import { jsx, jsxs, Fragment } from "react/jsx-runtime";
-import { u as useFetchCategory, T as Title, a as useFetchCart, g as getCartKeys, b as useIsProductInCart, B as Button, c as useFetchProductsByCatrgory, R as Route, L as Loading } from "./router-DXjGkYx9.js";
-import { useQueryClient, useMutation } from "@tanstack/react-query";
+import { P as PageHeader } from "./PageHeader-CGDbH1oi.js";
+import { u as useFetchCategory, T as Title, c as cartQueryOptions, g as getCartKeys, a as useIsProductInCart, B as Button, b as useFetchProductsByCatrgory, R as Route, L as Loading } from "./router-BdaY2km5.js";
+import { useSuspenseQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import "@tanstack/react-router";
 import "react";
 import "lucide-react";
@@ -10,7 +11,7 @@ import "@tanstack/react-router-devtools";
 import "@tanstack/react-router-ssr-query";
 function Header({ categoryId }) {
   const categoryQuery = useFetchCategory(categoryId);
-  return /* @__PURE__ */ jsx(Title.H1, { className: "text-center pt-8 mb-16", children: categoryQuery.data?.description });
+  return /* @__PURE__ */ jsx(PageHeader, { children: categoryQuery.data?.description });
 }
 function Border({ children }) {
   return /* @__PURE__ */ jsx("div", { className: "border rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow p-4 w-128", children });
@@ -30,7 +31,7 @@ function Spinner() {
   return /* @__PURE__ */ jsx("div", { className: "flex items-center justify-center", children: /* @__PURE__ */ jsx("div", { className: "w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" }) });
 }
 const useAddProductToCart = () => {
-  const cart = useFetchCart();
+  const cart = useSuspenseQuery(cartQueryOptions);
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (product) => {
@@ -59,7 +60,7 @@ const useAddProductToCart = () => {
   });
 };
 const useRemoveProductToCart = () => {
-  const cart = useFetchCart();
+  const cart = useSuspenseQuery(cartQueryOptions);
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (product) => {

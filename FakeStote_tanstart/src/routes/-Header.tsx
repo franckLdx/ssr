@@ -8,7 +8,7 @@ import { Route as cartRoute } from "./pipe";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/Button";
 import { QueryClient } from "@tanstack/react-query";
-import { ensureCart } from "@/services/Cart/getCart";
+import { ensureCart } from "@/services/cart/fetchCart";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);

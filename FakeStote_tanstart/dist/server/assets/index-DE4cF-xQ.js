@@ -1,5 +1,5 @@
 import { jsx } from "react/jsx-runtime";
-import { T as Title } from "./router-DXjGkYx9.js";
+import { T as Title } from "./router-BdaY2km5.js";
 import "@tanstack/react-router";
 import "react";
 import "lucide-react";

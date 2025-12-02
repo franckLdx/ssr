@@ -12,23 +12,20 @@ const fetchCart = async () => {
 
 export const getCartKeys = () => ["cart"];
 
-const fetchCartOptions = queryOptions({
+export const cartQueryOptions = queryOptions({
 	queryKey: getCartKeys(),
 	queryFn: () => fetchCart(),
 });
 
-export const useFetchCart = () =>
-	useSuspenseQuery(fetchCartOptions);
-
 export const prefetchCart = async (queryClient: QueryClient) =>
-	queryClient.prefetchQuery(fetchCartOptions);
+	queryClient.prefetchQuery(cartQueryOptions);
 
 export const ensureCart = async (queryClient: QueryClient) =>
-	queryClient.ensureQueryData(fetchCartOptions);
+	queryClient.ensureQueryData(cartQueryOptions);
 
 export const useIsProductInCart = (productId: string): boolean | undefined => {
-	const useGetCart = useFetchCart();
-	return useGetCart.data?.products?.some(
+	const cartQUery = useSuspenseQuery(cartQueryOptions)
+	return cartQUery.data?.products?.some(
 		(item: { productId: string; quantity: number }) =>
 			item.productId === productId,
 	);

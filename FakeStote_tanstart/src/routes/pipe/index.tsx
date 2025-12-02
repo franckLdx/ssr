@@ -1,5 +1,5 @@
 import { Loading } from '@/components/Loading';
-import { ensureCart } from '@/services/Cart/getCart';
+import { ensureCart } from '@/services/cart/fetchCart';
 import { QueryClient } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router'
 import { Products } from './cart/-Products';
