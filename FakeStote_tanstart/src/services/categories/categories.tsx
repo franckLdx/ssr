@@ -1,7 +1,7 @@
-import { QueryClient, queryOptions, useSuspenseQuery } from "@tanstack/react-query";
+import { queryOptions } from "@tanstack/react-query";
 import type { Category } from "./declaration";
 
-export const fetchCategories = async () => {
+const fetchCategories = async () => {
 	const response = await fetch("http://localhost:3000/categories");
 
 	if (!response.ok) {
@@ -14,16 +14,8 @@ export const fetchCategories = async () => {
 
 const CATEGORIES_KEY = ["categories"];
 
-const options = queryOptions({
+export const categoriresQueryOptions = queryOptions({
 	queryKey: CATEGORIES_KEY,
 	queryFn: fetchCategories,
 })
 
-export const useFetchCategories = () =>
-	useSuspenseQuery(options)
-
-export const prefetchCategories = (queryClient: QueryClient) =>
-	queryClient.prefetchQuery(options)
-
-export const ensureCategories = (queryClient: QueryClient) =>
-	queryClient.ensureQueryData(options)

@@ -2,19 +2,20 @@ import { useState } from "react";
 import { Home, ShoppingCart } from "lucide-react";
 import { BurgerButtons } from "../components/menu/BurgerButtons";
 import { Menu } from "../components/menu";
-import { ensureCategories, useFetchCategories } from "@/services/categories/categories";
+import { categoriresQueryOptions } from "@/services/categories/categories";
 import { Route as categoryRoute } from "./category/$categoryId";
 import { Route as cartRoute } from "./pipe";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/Button";
-import { QueryClient } from "@tanstack/react-query";
-import { ensureCart } from "@/services/cart/fetchCart";
+import { QueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { cartQueryOptions } from "@/services/cart/cart";
+
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = () => setIsOpen(false);
 
-  const categoriesQuery = useFetchCategories();
+  const categoriesQuery = useSuspenseQuery(categoriresQueryOptions);
 
   return (
     <>
@@ -52,7 +53,7 @@ export function Header() {
 
 export async function headerLoader(queryClient: QueryClient) {
   return Promise.all([
-    ensureCategories(queryClient),
-    ensureCart(queryClient)
+    queryClient.ensureQueryData(categoriresQueryOptions),
+    queryClient.ensureQueryData(cartQueryOptions)
   ])
 }

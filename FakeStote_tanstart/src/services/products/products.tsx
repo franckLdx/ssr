@@ -1,4 +1,4 @@
-import { QueryClient, queryOptions, useSuspenseQuery } from "@tanstack/react-query";
+import { queryOptions } from "@tanstack/react-query";
 
 export type ProductModel = {
 	id: string;
@@ -27,22 +27,13 @@ const fetchProductByCategory = async (categoryId: string) => {
 };
 
 
-export const getProductsByCatrgory = (categoryId: string) => [
+export const getProductsByCatergoryKeys = (categoryId: string) => [
 	"producs",
 	"byCategory",
 	categoryId,
 ];
 
-const fetchProductByCategoryOptions = (categoryId: string) => queryOptions({
-	queryKey: getProductsByCatrgory(categoryId),
+export const productByCategoryQueryOptions = (categoryId: string) => queryOptions({
+	queryKey: getProductsByCatergoryKeys(categoryId),
 	queryFn: () => fetchProductByCategory(categoryId),
 })
-
-export const prefetchProductByCategoryOptions = (queryClient: QueryClient, categoryId: string) =>
-	queryClient.prefetchQuery(fetchProductByCategoryOptions(categoryId));
-
-export const ensureProductByCategoryOptions = (queryClient: QueryClient, categoryId: string) =>
-	queryClient.ensureQueryData(fetchProductByCategoryOptions(categoryId));
-
-export const useFetchProductsByCatrgory = (categoryId: string) =>
-	useSuspenseQuery(fetchProductByCategoryOptions(categoryId));

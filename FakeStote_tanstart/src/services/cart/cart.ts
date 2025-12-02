@@ -1,4 +1,4 @@
-import { QueryClient, queryOptions, useSuspenseQuery } from "@tanstack/react-query";
+import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { CartModel } from "./declaration";
 
 const fetchCart = async () => {
@@ -16,12 +16,6 @@ export const cartQueryOptions = queryOptions({
 	queryKey: getCartKeys(),
 	queryFn: () => fetchCart(),
 });
-
-export const prefetchCart = async (queryClient: QueryClient) =>
-	queryClient.prefetchQuery(cartQueryOptions);
-
-export const ensureCart = async (queryClient: QueryClient) =>
-	queryClient.ensureQueryData(cartQueryOptions);
 
 export const useIsProductInCart = (productId: string): boolean | undefined => {
 	const cartQUery = useSuspenseQuery(cartQueryOptions)

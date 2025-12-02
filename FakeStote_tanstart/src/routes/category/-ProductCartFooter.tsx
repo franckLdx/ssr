@@ -1,6 +1,6 @@
 import { Button } from "@/components/Button";
 import { Spinner } from "@/components/Spinner";
-import { useIsProductInCart } from "@/services/cart/fetchCart";
+import { useIsProductInCart } from "@/services/cart/cart";
 import { useRemoveProductToCart, useAddProductToCart } from "@/services/cart/updateProductsCart";
 import type { ProductModel } from "@/services/products/products";
 

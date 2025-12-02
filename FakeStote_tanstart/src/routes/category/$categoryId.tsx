@@ -1,6 +1,6 @@
-import { ensureCategory } from "@/services/categories/category";
+import { getCategoryQueryOptions } from "@/services/categories/category";
 import {
-  ensureProductByCategoryOptions,
+  productByCategoryQueryOptions,
 } from "@/services/products/products";
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "./-Header";
@@ -16,8 +16,8 @@ export const Route = createFileRoute("/category/$categoryId")({
     const categoryId = params.categoryId;
 
     return Promise.all([
-      ensureCategory(queryClient, categoryId),
-      ensureProductByCategoryOptions(queryClient, categoryId),
+      queryClient.ensureQueryData(getCategoryQueryOptions(categoryId)),
+      queryClient.ensureQueryData(productByCategoryQueryOptions(categoryId)),
     ]);
   },
 });
