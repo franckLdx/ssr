@@ -1,13 +1,13 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ProductCard } from "./-ProductCard";
-import { productByCategoryQueryOptions } from "@/services/products/products";
+import { getProductByCategoryQueryOptions } from "@/services/products/products";
 
 type ProductsListProps = {
   categoryId: string;
 };
 
 export function ProductsList({ categoryId }: ProductsListProps) {
-  const productsQuery = useSuspenseQuery(productByCategoryQueryOptions(categoryId));
+  const productsQuery = useSuspenseQuery(getProductByCategoryQueryOptions(categoryId));
 
   return (
     <ul className="flex flex-wrap gap-8 list-none p-0 m-0">

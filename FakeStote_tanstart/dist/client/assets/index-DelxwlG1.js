@@ -1,1 +1,0 @@
-import{j as e,T as t}from"./main-DyPt28Sk.js";function r(){return e.jsx("div",{className:"flex items-center justify-center min-h-screen",children:e.jsx(t.H1,{children:"Welcome Fake Store !"})})}export{r as component};

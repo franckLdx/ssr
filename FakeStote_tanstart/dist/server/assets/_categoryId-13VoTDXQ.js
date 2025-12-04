@@ -1,6 +1,6 @@
 import { jsx, jsxs, Fragment } from "react/jsx-runtime";
-import { P as PageHeader } from "./PageHeader-CGDbH1oi.js";
-import { u as useFetchCategory, T as Title, c as cartQueryOptions, g as getCartKeys, a as useIsProductInCart, B as Button, b as useFetchProductsByCatrgory, R as Route, L as Loading } from "./router-BdaY2km5.js";
+import { P as PageHeader } from "./PageHeader-BX85VuTN.js";
+import { a as getCategoryQueryOptions, T as Title, c as cartQueryOptions, b as getCartKeys, u as useIsProductInCart, B as Button, d as getProductByCategoryQueryOptions, R as Route, L as Loading } from "./router-Wgci3UxL.js";
 import { useSuspenseQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import "@tanstack/react-router";
 import "react";
@@ -10,7 +10,7 @@ import "@tanstack/react-query-devtools";
 import "@tanstack/react-router-devtools";
 import "@tanstack/react-router-ssr-query";
 function Header({ categoryId }) {
-  const categoryQuery = useFetchCategory(categoryId);
+  const categoryQuery = useSuspenseQuery(getCategoryQueryOptions(categoryId));
   return /* @__PURE__ */ jsx(PageHeader, { children: categoryQuery.data?.description });
 }
 function Border({ children }) {
@@ -114,7 +114,7 @@ function ProductCard({ product }) {
   ] });
 }
 function ProductsList({ categoryId }) {
-  const productsQuery = useFetchProductsByCatrgory(categoryId);
+  const productsQuery = useSuspenseQuery(getProductByCategoryQueryOptions(categoryId));
   return /* @__PURE__ */ jsx("ul", { className: "flex flex-wrap gap-8 list-none p-0 m-0", children: productsQuery.data?.map((product) => /* @__PURE__ */ jsx("li", { className: "w-full sm:w-auto", children: /* @__PURE__ */ jsx(ProductCard, { product }) }, product.id)) });
 }
 function CategoryPage() {

@@ -33,7 +33,34 @@ export const getProductsByCatergoryKeys = (categoryId: string) => [
 	categoryId,
 ];
 
-export const productByCategoryQueryOptions = (categoryId: string) => queryOptions({
+export const getProductByCategoryQueryOptions = (categoryId: string) => queryOptions({
 	queryKey: getProductsByCatergoryKeys(categoryId),
 	queryFn: () => fetchProductByCategory(categoryId),
 })
+
+
+const fetchProduct = async (productId: string) => {
+	// await wait()
+	const response = await fetch(
+		`http://localhost:3000/products/${productId}`,
+	);
+
+	if (!response.ok) {
+		throw new Error(`Failed to fetch product ${productId}`);
+	}
+
+	const products = (await response.json()) as ProductModel;
+	return products;
+};
+
+
+const getProductKeys = (productId: string) => [
+	"producs",
+	productId,
+];
+
+export const getProductQueryOptions = (productId: string) => queryOptions({
+	queryKey: getProductKeys(productId),
+	queryFn: () => fetchProduct(productId),
+})
+
