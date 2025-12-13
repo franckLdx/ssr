@@ -1,6 +1,6 @@
 import { jsx, jsxs, Fragment } from "react/jsx-runtime";
-import { P as PageHeader } from "./PageHeader-BX85VuTN.js";
-import { a as getCategoryQueryOptions, T as Title, c as cartQueryOptions, b as getCartKeys, u as useIsProductInCart, B as Button, d as getProductByCategoryQueryOptions, R as Route, L as Loading } from "./router-Wgci3UxL.js";
+import { P as PageHeader } from "./PageHeader-CWYJycO2.js";
+import { g as getCategoryQueryOptions, T as Title, c as cartQueryOptions, a as getCartKeys, u as useIsProductInCart, B as Button, b as getProductByCategoryQueryOptions, R as Route, L as Loading } from "./router-ktfnY0FX.js";
 import { useSuspenseQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import "@tanstack/react-router";
 import "react";
@@ -8,6 +8,9 @@ import "lucide-react";
 import "@tanstack/react-devtools";
 import "@tanstack/react-query-devtools";
 import "@tanstack/react-router-devtools";
+import "../server.js";
+import "node:async_hooks";
+import "@tanstack/react-router/ssr/server";
 import "@tanstack/react-router-ssr-query";
 function Header({ categoryId }) {
   const categoryQuery = useSuspenseQuery(getCategoryQueryOptions(categoryId));

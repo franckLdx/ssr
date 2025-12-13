@@ -4,7 +4,7 @@ import { BurgerButtons } from "../components/menu/BurgerButtons";
 import { Menu } from "../components/menu";
 import { categoriresQueryOptions } from "@/services/categories/categories";
 import { Route as categoryRoute } from "./category/$categoryId";
-import { Route as cartRoute } from "./pipe";
+import { Route as cartRoute } from "./pipe/cart";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/Button";
 import { QueryClient, useSuspenseQuery } from "@tanstack/react-query";

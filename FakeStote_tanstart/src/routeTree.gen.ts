@@ -10,17 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as PipeIndexRouteImport } from './routes/pipe/index'
 import { Route as CategoryCategoryIdRouteImport } from './routes/category/$categoryId'
+import { Route as PipePaymentIndexRouteImport } from './routes/pipe/payment/index'
+import { Route as PipeCartIndexRouteImport } from './routes/pipe/cart/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PipeIndexRoute = PipeIndexRouteImport.update({
-  id: '/pipe/',
-  path: '/pipe/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CategoryCategoryIdRoute = CategoryCategoryIdRouteImport.update({
@@ -28,35 +24,54 @@ const CategoryCategoryIdRoute = CategoryCategoryIdRouteImport.update({
   path: '/category/$categoryId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PipePaymentIndexRoute = PipePaymentIndexRouteImport.update({
+  id: '/pipe/payment/',
+  path: '/pipe/payment/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PipeCartIndexRoute = PipeCartIndexRouteImport.update({
+  id: '/pipe/cart/',
+  path: '/pipe/cart/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/category/$categoryId': typeof CategoryCategoryIdRoute
-  '/pipe': typeof PipeIndexRoute
+  '/pipe/cart': typeof PipeCartIndexRoute
+  '/pipe/payment': typeof PipePaymentIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/category/$categoryId': typeof CategoryCategoryIdRoute
-  '/pipe': typeof PipeIndexRoute
+  '/pipe/cart': typeof PipeCartIndexRoute
+  '/pipe/payment': typeof PipePaymentIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/category/$categoryId': typeof CategoryCategoryIdRoute
-  '/pipe/': typeof PipeIndexRoute
+  '/pipe/cart/': typeof PipeCartIndexRoute
+  '/pipe/payment/': typeof PipePaymentIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/category/$categoryId' | '/pipe'
+  fullPaths: '/' | '/category/$categoryId' | '/pipe/cart' | '/pipe/payment'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/category/$categoryId' | '/pipe'
-  id: '__root__' | '/' | '/category/$categoryId' | '/pipe/'
+  to: '/' | '/category/$categoryId' | '/pipe/cart' | '/pipe/payment'
+  id:
+    | '__root__'
+    | '/'
+    | '/category/$categoryId'
+    | '/pipe/cart/'
+    | '/pipe/payment/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CategoryCategoryIdRoute: typeof CategoryCategoryIdRoute
-  PipeIndexRoute: typeof PipeIndexRoute
+  PipeCartIndexRoute: typeof PipeCartIndexRoute
+  PipePaymentIndexRoute: typeof PipePaymentIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,18 +83,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/pipe/': {
-      id: '/pipe/'
-      path: '/pipe'
-      fullPath: '/pipe'
-      preLoaderRoute: typeof PipeIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/category/$categoryId': {
       id: '/category/$categoryId'
       path: '/category/$categoryId'
       fullPath: '/category/$categoryId'
       preLoaderRoute: typeof CategoryCategoryIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pipe/payment/': {
+      id: '/pipe/payment/'
+      path: '/pipe/payment'
+      fullPath: '/pipe/payment'
+      preLoaderRoute: typeof PipePaymentIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pipe/cart/': {
+      id: '/pipe/cart/'
+      path: '/pipe/cart'
+      fullPath: '/pipe/cart'
+      preLoaderRoute: typeof PipeCartIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +110,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CategoryCategoryIdRoute: CategoryCategoryIdRoute,
-  PipeIndexRoute: PipeIndexRoute,
+  PipeCartIndexRoute: PipeCartIndexRoute,
+  PipePaymentIndexRoute: PipePaymentIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

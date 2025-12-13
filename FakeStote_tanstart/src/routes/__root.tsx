@@ -33,6 +33,7 @@ export const Route = createRootRoute({
   }),
 
   shellComponent: RootDocument,
+
   loader: async ({ context }): Promise<RootLoaderData> => {
     const queryClient = (context as any).queryClient as QueryClient;
 

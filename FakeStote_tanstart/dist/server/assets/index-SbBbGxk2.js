@@ -1,13 +1,16 @@
 import { jsxs, jsx } from "react/jsx-runtime";
-import { g as getProductQueryOptions, c as cartQueryOptions, L as Loading } from "./router-Wgci3UxL.js";
+import { d as getProductQueryOptions, c as cartQueryOptions, L as Loading, e as Route, B as Button } from "./router-ktfnY0FX.js";
+import { Link } from "@tanstack/react-router";
 import { useSuspenseQuery, useQueries } from "@tanstack/react-query";
-import { P as PageHeader } from "./PageHeader-BX85VuTN.js";
+import { P as PageHeader } from "./PageHeader-CWYJycO2.js";
 import { useMemo } from "react";
-import "@tanstack/react-router";
 import "lucide-react";
 import "@tanstack/react-devtools";
 import "@tanstack/react-query-devtools";
 import "@tanstack/react-router-devtools";
+import "../server.js";
+import "node:async_hooks";
+import "@tanstack/react-router/ssr/server";
 import "@tanstack/react-router-ssr-query";
 function Price({ amount }) {
   return /* @__PURE__ */ jsxs("span", { children: [
@@ -59,7 +62,8 @@ function RouteComponent() {
       "Your Cart - ",
       /* @__PURE__ */ jsx(Total, {})
     ] }) }),
-    /* @__PURE__ */ jsx(Products, {})
+    /* @__PURE__ */ jsx(Products, {}),
+    /* @__PURE__ */ jsx("div", { className: "mt-4 flex justify-center", children: /* @__PURE__ */ jsx(Link, { to: Route.to, children: /* @__PURE__ */ jsx(Button, { className: "px-32 py-8", children: "Payment" }) }) })
   ] });
 }
 export {

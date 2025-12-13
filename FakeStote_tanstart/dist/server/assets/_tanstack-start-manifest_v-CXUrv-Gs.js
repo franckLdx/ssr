@@ -1,4 +1,0 @@
-const tsrStartManifest = () => ({ "routes": { "__root__": { "filePath": "C:/Users/Utilisateur/Documents/dev/ssr/ssr/FakeStote_tanstart/src/routes/__root.tsx", "children": ["/", "/category/$categoryId", "/pipe/"], "preloads": ["/assets/main-D7Fvl1Tg.js"], "assets": [] }, "/": { "filePath": "C:/Users/Utilisateur/Documents/dev/ssr/ssr/FakeStote_tanstart/src/routes/index.tsx", "assets": [], "preloads": ["/assets/index-BPk_vkPU.js"] }, "/category/$categoryId": { "filePath": "C:/Users/Utilisateur/Documents/dev/ssr/ssr/FakeStote_tanstart/src/routes/category/$categoryId.tsx", "assets": [], "preloads": ["/assets/_categoryId-BGK090aa.js", "/assets/PageHeader-B6WWkyST.js"] }, "/pipe/": { "filePath": "C:/Users/Utilisateur/Documents/dev/ssr/ssr/FakeStote_tanstart/src/routes/pipe/index.tsx", "assets": [], "preloads": ["/assets/index-CVAWZlNa.js", "/assets/PageHeader-B6WWkyST.js"] } }, "clientEntry": "/assets/main-D7Fvl1Tg.js" });
-export {
-  tsrStartManifest
-};

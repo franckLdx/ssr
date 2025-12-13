@@ -20,6 +20,11 @@ export const Route = createFileRoute("/category/$categoryId")({
       queryClient.ensureQueryData(getProductByCategoryQueryOptions(categoryId)),
     ]);
   },
+  head: () => ({
+    meta: [{
+      title: 'Category | FakeStore',
+    }],
+  })
 });
 
 function CategoryPage() {

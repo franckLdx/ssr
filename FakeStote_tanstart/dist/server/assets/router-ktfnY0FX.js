@@ -6,11 +6,13 @@ import { queryOptions, useSuspenseQuery, dehydrate, HydrationBoundary, QueryClie
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { T as TSS_SERVER_FUNCTION, g as getServerFnById, c as createServerFn } from "../server.js";
 import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query";
 function Loading({ children }) {
   return /* @__PURE__ */ jsx(Suspense, { fallback: /* @__PURE__ */ jsx("div", { children: "Loading..." }), children });
 }
 function Button({
+  className,
   onClick,
   children,
   "aria-label": ariaLabel
@@ -19,7 +21,7 @@ function Button({
     "button",
     {
       onClick,
-      className: "p-2 hover:bg-gray-700 rounded-lg transition-colors border border-gray-300",
+      className: `p-2 hover:bg-gray-700 rounded-lg transition-colors border border-gray-300 ${className}`,
       "aria-label": ariaLabel,
       children
     }
@@ -131,9 +133,9 @@ const getProductQueryOptions = (productId) => queryOptions({
   queryKey: getProductKeys(productId),
   queryFn: () => fetchProduct(productId)
 });
-const $$splitComponentImporter$2 = () => import("./_categoryId-13VoTDXQ.js");
-const Route$3 = createFileRoute("/category/$categoryId")({
-  component: lazyRouteComponent($$splitComponentImporter$2, "component"),
+const $$splitComponentImporter$3 = () => import("./_categoryId-hDpNJjHE.js");
+const Route$4 = createFileRoute("/category/$categoryId")({
+  component: lazyRouteComponent($$splitComponentImporter$3, "component"),
   loader: async ({
     params,
     context
@@ -141,7 +143,12 @@ const Route$3 = createFileRoute("/category/$categoryId")({
     const queryClient = context.queryClient;
     const categoryId = params.categoryId;
     return Promise.all([queryClient.ensureQueryData(getCategoryQueryOptions(categoryId)), queryClient.ensureQueryData(getProductByCategoryQueryOptions(categoryId))]);
-  }
+  },
+  head: () => ({
+    meta: [{
+      title: "Category | FakeStore"
+    }]
+  })
 });
 const fetchCart = async () => {
   const response = await fetch(`http://localhost:3000/carts/1`);
@@ -161,8 +168,8 @@ const useIsProductInCart = (productId) => {
     (item) => item.productId === productId
   );
 };
-const $$splitComponentImporter$1 = () => import("./index-BCyRRl6F.js");
-const Route$2 = createFileRoute("/pipe/")({
+const $$splitComponentImporter$2 = () => import("./index-SbBbGxk2.js");
+const Route$3 = createFileRoute("/pipe/cart/")({
   loader: async ({
     context
   }) => {
@@ -172,7 +179,12 @@ const Route$2 = createFileRoute("/pipe/")({
       queryClient.prefetchQuery(getProductQueryOptions(product.productId));
     }
   },
-  component: lazyRouteComponent($$splitComponentImporter$1, "component")
+  component: lazyRouteComponent($$splitComponentImporter$2, "component"),
+  head: () => ({
+    meta: [{
+      title: "Cart | FakeStore"
+    }]
+  })
 });
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -181,7 +193,7 @@ function Header() {
   return /* @__PURE__ */ jsxs(Fragment, { children: [
     /* @__PURE__ */ jsxs("header", { className: "p-4 flex items-center justify-between bg-gray-800 text-white shadow-lg", children: [
       /* @__PURE__ */ jsx(BurgerButtons, { onClick: () => setIsOpen(true) }),
-      /* @__PURE__ */ jsx(Link$1, { to: Route$2.to, children: /* @__PURE__ */ jsx(Button, { children: /* @__PURE__ */ jsx(ShoppingCart, { size: 24 }) }) })
+      /* @__PURE__ */ jsx(Link$1, { to: Route$3.to, children: /* @__PURE__ */ jsx(Button, { children: /* @__PURE__ */ jsx(ShoppingCart, { size: 24 }) }) })
     ] }),
     /* @__PURE__ */ jsxs(
       "aside",
@@ -197,7 +209,7 @@ function Header() {
             categoriesQuery.data?.map((category) => /* @__PURE__ */ jsx(
               Menu.Link,
               {
-                to: Route$3.to,
+                to: Route$4.to,
                 params: { categoryId: category.id },
                 onClick: onClose,
                 children: /* @__PURE__ */ jsx(Menu.Text, { children: category.description })
@@ -236,8 +248,8 @@ function DevTools() {
     }
   );
 }
-const appCss = "/assets/styles-CNbd552Q.css";
-const Route$1 = createRootRoute({
+const appCss = "/assets/styles-D8Y57yg4.css";
+const Route$2 = createRootRoute({
   head: () => ({
     meta: [
       {
@@ -268,7 +280,7 @@ const Route$1 = createRootRoute({
   }
 });
 function RootDocument({ children }) {
-  const { dehydratedState } = Route$1.useLoaderData();
+  const { dehydratedState } = Route$2.useLoaderData();
   return /* @__PURE__ */ jsxs("html", { lang: "en", children: [
     /* @__PURE__ */ jsx("head", { children: /* @__PURE__ */ jsx(HeadContent, {}) }),
     /* @__PURE__ */ jsxs("body", { className: "text-white", children: [
@@ -281,31 +293,69 @@ function RootDocument({ children }) {
     ] })
   ] });
 }
-const $$splitComponentImporter = () => import("./index-DgFagqRN.js");
-const Route = createFileRoute("/")({
-  component: lazyRouteComponent($$splitComponentImporter, "component")
+const $$splitComponentImporter$1 = () => import("./index-BG7dWZkW.js");
+const Route$1 = createFileRoute("/")({
+  component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
-const IndexRoute = Route.update({
+const createSsrRpc = (functionId) => {
+  const url = "/_serverFn/" + functionId;
+  const fn = async (...args) => {
+    const serverFn = await getServerFnById(functionId);
+    return serverFn(...args);
+  };
+  return Object.assign(fn, {
+    url,
+    functionId,
+    [TSS_SERVER_FUNCTION]: true
+  });
+};
+const $$splitComponentImporter = () => import("./index-DV1aaOEE.js");
+const Route = createFileRoute("/pipe/payment/")({
+  component: lazyRouteComponent($$splitComponentImporter, "component"),
+  head: () => ({
+    meta: [{
+      title: "Payment | FakeStore"
+    }]
+  })
+});
+const pay_createServerFn_handler = createSsrRpc("6826078ac2d43b349bd8c0be7048326c018698db17798e64c38dcee1197b5a5b");
+const pay = createServerFn({
+  method: "POST"
+}).handler(pay_createServerFn_handler, async ({
+  data
+}) => {
+  data.id;
+  return {
+    success: true
+  };
+});
+const IndexRoute = Route$1.update({
   id: "/",
   path: "/",
-  getParentRoute: () => Route$1
+  getParentRoute: () => Route$2
 });
-const PipeIndexRoute = Route$2.update({
-  id: "/pipe/",
-  path: "/pipe/",
-  getParentRoute: () => Route$1
-});
-const CategoryCategoryIdRoute = Route$3.update({
+const CategoryCategoryIdRoute = Route$4.update({
   id: "/category/$categoryId",
   path: "/category/$categoryId",
-  getParentRoute: () => Route$1
+  getParentRoute: () => Route$2
+});
+const PipePaymentIndexRoute = Route.update({
+  id: "/pipe/payment/",
+  path: "/pipe/payment/",
+  getParentRoute: () => Route$2
+});
+const PipeCartIndexRoute = Route$3.update({
+  id: "/pipe/cart/",
+  path: "/pipe/cart/",
+  getParentRoute: () => Route$2
 });
 const rootRouteChildren = {
   IndexRoute,
   CategoryCategoryIdRoute,
-  PipeIndexRoute
+  PipeCartIndexRoute,
+  PipePaymentIndexRoute
 };
-const routeTree = Route$1._addFileChildren(rootRouteChildren)._addFileTypes();
+const routeTree = Route$2._addFileChildren(rootRouteChildren)._addFileTypes();
 function H1({ className, children }) {
   return /* @__PURE__ */ jsx("h1", { className: `text-2xl md:text-3xl mb-4 font-medium ${className}`, children });
 }
@@ -354,13 +404,15 @@ const router = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
 export {
   Button as B,
   Loading as L,
-  Route$3 as R,
+  Route$4 as R,
   Title as T,
-  getCategoryQueryOptions as a,
-  getCartKeys as b,
+  getCartKeys as a,
+  getProductByCategoryQueryOptions as b,
   cartQueryOptions as c,
-  getProductByCategoryQueryOptions as d,
-  getProductQueryOptions as g,
+  getProductQueryOptions as d,
+  Route as e,
+  getCategoryQueryOptions as g,
+  pay as p,
   router as r,
   useIsProductInCart as u
 };

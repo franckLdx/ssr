@@ -1,10 +1,12 @@
 type ButtonProps = {
+	className?: string;
 	onClick?: () => void;
 	"aria-label"?: string;
 	children?: React.ReactNode;
 };
 
 export function Button({
+	className,
 	onClick,
 	children,
 	"aria-label": ariaLabel,
@@ -12,8 +14,8 @@ export function Button({
 	return (
 		<button
 			onClick={onClick}
-			className="p-2 hover:bg-gray-700 rounded-lg transition-colors border border-gray-300"
-			style={{ padding: 8 }}
+			className={`p-2 hover:bg-gray-700 rounded-lg transition-colors border border-gray-300 ${className}`
+			}
 			aria-label={ariaLabel}
 		>
 			{children}

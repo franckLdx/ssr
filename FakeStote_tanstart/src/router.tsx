@@ -3,6 +3,7 @@ import { routeTree } from "./routeTree.gen";
 import { QueryClient } from "@tanstack/react-query";
 import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query";
 import { NotFoundComponent } from "./components/NotFoundComponent";
+import BigBadaboom from "./components/BigBadaboom";
 
 export const getRouter = () => {
   const queryClient = new QueryClient({
@@ -21,7 +22,7 @@ export const getRouter = () => {
     defaultPreloadStaleTime: 0,
     context: { queryClient },
     defaultErrorComponent: ({ error }) => (
-      <ErrorComponent error={error} />
+      <BigBadaboom error={error} />
     ),
     defaultNotFoundComponent: NotFoundComponent
   });
