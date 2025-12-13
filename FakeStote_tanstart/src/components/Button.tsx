@@ -13,6 +13,7 @@ export function Button({
 		<button
 			onClick={onClick}
 			className="p-2 hover:bg-gray-700 rounded-lg transition-colors border border-gray-300"
+			style={{ padding: 8 }}
 			aria-label={ariaLabel}
 		>
 			{children}
